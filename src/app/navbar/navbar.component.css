@@ -1,0 +1,52 @@
+.navbar {
+    background-color: rgba(198, 198, 198, 0.73);
+    backdrop-filter: blur(20px);
+    z-index: 999;
+  }
+
+li {
+    list-style: none;
+}
+
+.login-icon > i.material-icons {
+    font-size: 36px;
+    cursor: pointer;
+}
+
+.cart-icon > i.material-icons {
+    font-size: 31px;
+    cursor: pointer;
+}
+
+.material-icons {
+    font-size: 30px;
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
+.cart-sidenav {
+    width: 700px;
+    position: fixed;
+    top: 78px;
+    right: -750px;
+    height: 100%;
+    transition: right 0.3s ease;
+    z-index: 1000;
+    background-color: rgba(198, 198, 198, 0.73);
+    backdrop-filter: blur(20px);
+    overflow-y: auto;
+  max-height: calc(100vh - 66px);
+}
+  
+.cart-sidenav.open {
+    right: 0;
+}
+
+.close-icon {
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    color: #333;
+}

@@ -1,0 +1,41 @@
+<div class="dialog-overlay">
+    <div class="login-popup" *ngIf="showLoginPopup">
+        <form fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="15px" #f="ngForm" (ngSubmit)="onSubmit(f)">
+            <p>Log In</p>
+            <mat-icon class="close-icon" (click)="onClose()">close</mat-icon>
+            <mat-form-field>
+                <input type="email" matInput placeholder="Your email" ngModel name="email" email required
+                    #emailInput="ngModel">
+                <mat-error *ngIf="emailInput.hasError('required')">Field should not be empty</mat-error>
+                <mat-error *ngIf="!emailInput.hasError('required')">Please use the correct email format.</mat-error>
+            </mat-form-field>
+
+            <mat-form-field hintLabel="Please enter minimum 8 characters.">
+                <input type="password" matInput placeholder="Your password" ngModel name="password" required
+                    minlength="8" #passInput="ngModel">
+                <mat-hint align="end">{{ passInput.value?.length }} / 8</mat-hint>
+            </mat-form-field>
+
+            <button type="submit" mat-raised-button color="primary" [disabled]="f.invalid"
+                (click)="onClose()">Submit</button>
+        </form>
+
+        <div class="d-flex flex-column justify-content-center align-items-center">
+            <span *ngIf="errorExists" class="text-danger mt-2">{{ errorText }}</span>
+            <button class="btn btn-link mt-2" (click)="showLoginPopup = false; showSignupPopup = true">I do not have an
+                account.</button>
+        </div>
+
+    </div>
+    <div class="signup-popup" *ngIf="showSignupPopup">
+        <div class="d-flex justify-content-center">
+            <p>Sign Up</p>
+        </div>
+        <mat-icon class="close-icon" (click)="onClose()">close</mat-icon>
+        <app-signup (signupSuccess)="onSignupSuccess()"></app-signup>
+        <div class="d-flex justify-content-center">
+            <button class="btn btn-link" (click)="showLoginPopup = true; showSignupPopup = false">Already have an
+                account? Log in.</button>
+        </div>
+    </div>
+</div>

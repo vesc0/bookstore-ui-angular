@@ -1,0 +1,53 @@
+<section>
+  <form fxLayout="column" fxLayoutAlign="center center" #f="ngForm" (ngSubmit)="onSubmit(f)">
+
+    <mat-form-field>
+      <input type="text" matInput placeholder="First Name" ngModel name="fName" required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input type="text" matInput placeholder="Last Name" ngModel name="lName" required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input type="email" matInput placeholder="Email" ngModel email name="email" #ei="ngModel" required>
+      <mat-error>Please enter a correct email.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input type="password" matInput placeholder="Password" ngModel name="password" minlength="6" #pi="ngModel"
+        required>
+      <mat-hint>{{pi.value?.length}} / 6</mat-hint>
+      <mat-error>Correct password required.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input type="text" matInput placeholder="Phone Number" ngModel name="number" #ni="ngModel" minlength="6"
+        maxlength="10" required>
+      <mat-error *ngIf="ni.hasError('required') || ni.value?.length < 6">Please enter your phone number.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input type="text" matInput placeholder="Address" ngModel name="address" required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select matInput placeholder="Favroite genre" ngModel name="fGenre" required>
+        <mat-option value=0>Novel</mat-option>
+        <mat-option value=1>Thriler</mat-option>
+        <mat-option value=2>History</mat-option>
+        <mat-option value=3>Science</mat-option>
+        <mat-option value=4>Mystery</mat-option>
+        <mat-option value=5>Business</mat-option>
+        <mat-option value=6>Fiction</mat-option>
+        <mat-option value=7>Romance</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button type="submit" mat-raised-button color="primary" [disabled]="f.invalid">Submit</button>
+
+    <mat-checkbox color="primary" ngModel name="acceptance" required>
+      I accept the terms and conditions of use.
+    </mat-checkbox>
+  </form>
+</section>

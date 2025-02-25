@@ -1,0 +1,58 @@
+mat-form-field {
+  width: 80%;
+}
+
+.login-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 4px;
+  width: 30%;
+}
+
+.close-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.signup-popup {
+  width: 400px;
+  height: 600px;
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 4px;
+  width: 30%;
+  overflow: auto;
+}
+
+@media (max-width: 768px) {
+  .signup-popup {
+    width: 90%;
+    height: auto;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  @media (max-width: 768px) {
+    .login-popup {
+      width: 90%;
+      height: auto;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+}

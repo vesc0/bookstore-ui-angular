@@ -1,0 +1,95 @@
+<div class="card book-list ms-5 me-5 mt-3 mb-5">
+  <div class="card-header">
+    <h2>Books</h2>
+    <div class="row">
+      <div class="col-md-5 ms-5 mt-4">
+        <div class="order-options">
+          <button class="btn btn-secondary filter-button me-2" (click)="sortBooks('title')">Sort by Title</button>
+          <button class="btn btn-secondary filter-button me-2" (click)="sortBooks('author')">Sort by Author</button>
+          <button class="btn btn-secondary filter-button" (click)="togglePriceSort()">
+            Sort by Price <i class="fa" [ngClass]="getPriceSortIcon()"></i>
+          </button>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="filter-options text-center">
+          <div class="row mb-1">
+            <div class="col-md-2">
+              <label class="form-label">Author:</label>
+              <input class="form-control filter-input" type="text" [(ngModel)]="authorFilter"
+                (input)="applyFilters()">
+            </div>
+            <div class="col-md-2">
+              <label class="form-label">Price Range:</label>
+              <input class="form-control filter-input" type="number" placeholder="Min" [(ngModel)]="minPriceFilter"
+                (input)="applyFilters()" min="0" max="100">
+              <input class="form-control filter-input" type="number" placeholder="Max" [(ngModel)]="maxPriceFilter"
+                (input)="applyFilters()" min="0" max="100">
+            </div>
+            <div class="col-md-2">
+              <label class="form-label">Category:</label>
+              <select class="form-select filter-input" [(ngModel)]="categoryFilter" (change)="applyFilters()">
+                <option value="">All</option>
+                <option value="Fiction">Fiction</option>
+                <option value="Novel">Novel</option>
+                <option value="Science">Science</option>
+                <option value="Romance">Romance</option>
+                <option value="Mystery">Mystery</option>
+                <option value="Thriller">Thriller</option>
+                <option value="Business">Business</option>
+              </select>
+            </div>
+            <div class="col-md-2">
+              <label class="form-label">Pages:</label>
+              <input class="form-control filter-input" type="number" placeholder="" [(ngModel)]="pageNumberFilter"
+                (input)="applyFilters()" min="0" max="2000">
+            </div>
+            <div class="col-md-2">
+              <label class="form-label">Year:</label>
+              <input class="form-control filter-input" type="number" placeholder="" [(ngModel)]="publishingYearFilter"
+                (input)="applyFilters()" min="1900" max="2023">
+            </div>
+            <div class="col-md-2">
+              <label class="form-label">Rating:</label>
+              <input class="form-control filter-input" type="number" placeholder="Min" [(ngModel)]="ratingFilter"
+                (input)="applyFilters()" step="0.5" min="0" max="5">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card-body ms-5 me-5">
+  <div class="row">
+    <div *ngFor="let book of filteredBooks" class="col-6 col-sm-4 col-md-3 col-lg-2 mb-5">
+      <div class="card book-card text-center d-flex flex-column justify-content-center align-items-center"
+        style="border: none;">
+        <a [routerLink]="['/books', book.id]">
+          <img src="{{ book.image }}" alt="{{ book.title }}" class="book-image"
+            style="max-width: 100%; max-height: 200px;">
+        </a>
+        <h3 class="card-title">{{ book.title }}</h3>
+        <p class="card-text">{{ book.author }}</p>
+        <p class="card-text">${{ book.price }}</p>
+        <p class="star-rating">
+          <ng-container *ngFor="let star of getBookAverageRating(book)">
+            <i [class]="star"></i>
+          </ng-container>
+        </p>
+        <button class="btn btn-primary" (click)="addToCart(book)">
+          <span *ngIf="loadingStates[book.id]; else addToCartButtonContent">
+            <div class="spinner-border spinner-border-sm" role="status">
+              <span class="visually-hidden">Adding...</span>
+            </div>
+          </span>
+          <ng-template #addToCartButtonContent>
+            Add to Cart
+          </ng-template>
+        </button>
+        
+      </div>
+    </div>
+  </div>
+</div>

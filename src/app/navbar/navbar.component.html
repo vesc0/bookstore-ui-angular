@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-lg navbar-light fixed-top p-3">
+
+  <a routerLink="/" class="navbar-brand ms-5">BookStore</a>
+
+  <button class="navbar-toggler me-5" type="button" (click)="toggleNavbar()"
+    [attr.aria-expanded]="isNavbarExpanded ? 'true' : 'false'" aria-controls="navbarSupportedContent"
+    aria-label="Toggle navigation">
+
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse ms-5" [ngClass]="{'show': isNavbarExpanded}" id="navbarSupportedContent">
+
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a routerLink="/" class="nav-link">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/books" class="nav-link">Books</a>
+      </li>
+
+    </ul>
+
+
+    <div class="d-flex align-items-center ms-auto me-5">
+      <ng-container *ngIf="!userService.currentUser; else loggedIn">
+        <a class="login-icon" (click)="openLoginPopup()">
+          <i class="material-icons">person</i>
+        </a>
+      </ng-container>
+      <ng-template #loggedIn>
+        <button mat-raised-button color="warn" *ngIf="userService.currentUser"
+          (click)="openProfile(userService.currentUser.id)">
+          {{ userService.currentUser.email }}
+        </button>
+      </ng-template>
+      <li><a class="cart-icon" (click)="toggleCartSidenav()"><i
+            class="material-icons mat-icon-no-marker">shopping_cart</i></a></li>
+    </div>
+  </div>
+</nav>
+
+<app-login *ngIf="showLogin" (closeLogin)="closeLogin()"></app-login>
+
+<div class="cart-sidenav" [ngClass]="{'open': isCartOpen}">
+  <mat-icon class="close-icon" (click)="closeCartSidenav()">close</mat-icon>
+  <app-cart></app-cart>
+</div>

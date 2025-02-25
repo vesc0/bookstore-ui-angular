@@ -1,0 +1,63 @@
+<div class="center-container ms-4 me-4">
+     <nav aria-label="breadcrumb">
+    <ol class="breadcrumb mb-5">
+      <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+      <li class="breadcrumb-item"><a routerLink="/books">Books</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{book?.title}}</li>
+    </ol>
+  </nav>
+    <div *ngIf="book" class="book-detail">
+        <div class="book-image-column">
+            <img src="{{ book.image }}" alt="{{ book.title }}" class="book-image">
+        </div>
+        <div class="book-details-column">
+            <h1>{{ book.title }}</h1>
+            <br>
+            <p>Author: {{ book.author }}</p>
+            <p>Category: {{ book.category }}</p>
+            <br><br><br>
+            <p class="description me-5">Short Description: {{ book.description }}</p>
+            <br>
+            <p>Rating: {{ getBookAverageRating(this.book) }} </p>
+            <br><br>
+            <p>Price: ${{ book.price }}</p>
+            <button class="btn btn-primary" (click)="addToCart(book)">Add to Cart</button>
+        </div>
+    </div>
+</div>
+
+<div class="accordion accordion-flush ms-5 me-5" id="accordionFlushExample">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="flush-headingOne">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+          Specification
+        </button>
+      </h2>
+      <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body"> 
+            <p>Page Number: {{ book?.pageNumber }}</p>
+            <p>Publishing Year: {{ book?.publishingYear }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="flush-headingTwo">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+          Description
+        </button>
+      </h2>
+      <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body">{{book?.description}}</div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="flush-headingThree">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+          In-Store Availability
+        </button>
+      </h2>
+      <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body">Coming soon...</div>
+      </div>
+    </div>
+  </div>

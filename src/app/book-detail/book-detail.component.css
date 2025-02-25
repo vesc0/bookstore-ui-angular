@@ -1,0 +1,42 @@
+.book-detail {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.book-image-column {
+  flex: 1;
+  padding: 10px;
+}
+
+.book-details-column {
+  flex: 2;
+  padding: 10px;
+}
+
+.book-image {
+  max-width: 150%;
+  height: 400px;
+}
+
+.center-container {
+  padding-top: 5%;
+  padding-left: 5%;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
+.description {
+  text-align: justify;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.accordion-body {
+text-align: justify;
+}
