@@ -4,6 +4,15 @@ A simple, responsive frontend for a virtual bookstore built using Angular. This 
 
 ---
 
+## Contents
+
+- [Features](#features)  
+- [Tech Stack](#tech-stack)  
+- [Getting Started](#getting-started)   
+- [Screenshots](#screenshots)
+
+---
+
 ## Features
 
 - Display a catalog of books with details like title, author, genre, and price
